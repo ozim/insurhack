@@ -4,7 +4,22 @@ import { getData } from "@/localStorageService";
 import { Link } from "react-router";
 
 export const PoliciesTable = () => {
-  const { policies} = getData();
+  const { policies } = getData();
+
+  if (policies.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center space-y-4 px-4">
+        <div className="text-center">
+          Nie masz żadnych polis
+        </div>
+        <Button size="lg" asChild className="w-full">
+          <Link to="/add-policy">
+            Dodaj pierwszą polisę
+          </Link>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <Table>
@@ -18,13 +33,6 @@ export const PoliciesTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {policies.length === 0 && (
-          <TableRow>
-            <TableCell colSpan={4} className="text-center">
-              Nie masz żadnych polis
-            </TableCell>
-          </TableRow>
-        )}
         {policies.map((policy) => {
           return (
             <TableRow key={policy.policyId}>

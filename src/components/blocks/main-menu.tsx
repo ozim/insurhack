@@ -45,17 +45,11 @@ const LinksList = () => {
       <Link to="/">
         Polisy
       </Link>
-      <Link to="/mateusz">
-        Mateusz
-      </Link>
-      <Link to="/sergey">
-        Sergey
-      </Link>
-      <Link to="/kuba">
-        Kuba
-      </Link>
       <Link to="/builder">
-          Porównywarka polis
+        Znajdź najlepszą ofertę
+      </Link>
+      <Link to="/contact">
+        Skontaktuj się z doradcą
       </Link>
     </div>
   );
