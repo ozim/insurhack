@@ -18,6 +18,7 @@ import { DatePicker } from "@/components/blocks/date-picker"
 import { addPolicy } from "@/localStorageService"
 import { format } from "date-fns"
 import { faker } from '@faker-js/faker';
+import { DicesIcon } from "lucide-react";
 
 const formSchema = z.object({
   policyId: z.string(),
@@ -83,6 +84,7 @@ export const AddPolicyForm = () => {
         variant="outline"
         onClick={handleClickReadExampleData}
       >
+        <DicesIcon />
         Generuj przykładowe dane
       </Button>
       <Form {...form}>
