@@ -25,11 +25,11 @@ export const PoliciesTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-          <TableHead className="text-right">Actions</TableHead>
+          <TableHead>Nr polisy</TableHead>
+          <TableHead >Nazwa ubezpieczyciela</TableHead>
+          <TableHead className="w-28">Data od</TableHead>
+          <TableHead className="w-28">Data do</TableHead>
+          <TableHead className="text-right w-28">Akcje</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -37,7 +37,7 @@ export const PoliciesTable = () => {
           return (
             <TableRow key={policy.policyId}>
               <TableCell className="font-medium">
-                {policy.policyId}
+                {policy.policyNumber}
               </TableCell>
               <TableCell>
                 {policy.insurerBrandName}
@@ -45,7 +45,7 @@ export const PoliciesTable = () => {
               <TableCell>
                 {policy.insurancePeriodValidFromDate}
               </TableCell>
-              <TableCell className="text-right">
+              <TableCell>
                 {policy.insurancePeriodValidToDate}
               </TableCell>
               <TableCell className="text-right">
