@@ -7,7 +7,7 @@ import axios from "axios";
 export const PolicyBuilder = () => {
     const [data, setData] = useState<Policy>();
     const handleClickNewPolicy = () => {
-        axios.get("http://localhost:8000")
+        axios.get("http://localhost:5173/src/assets/response.json")
             .then(response => {
                 const policy = randomizeData(mapData(response.data));
                 // @ts-expect-error
@@ -37,6 +37,7 @@ const mapData = (apiData: any) => {
             type: document.type,
             fileName: document.fileName,
             description: document.description,
+            documentData: document.documentData
         })),
         premiumInstallmentList: apiData.premiumInstallmentList.map((premiumInstallment: any) => ({
             installmentId: premiumInstallment.installmentId,
@@ -66,6 +67,7 @@ const randomizeData = (apiData: any) => {
             type: document.type,
             fileName: document.fileName,
             description: document.description,
+            documentData: document.documentData
         })),
         premiumInstallmentList: apiData.premiumInstallmentList.map((premiumInstallment: any) => ({
             installmentId: premiumInstallment.installmentId,
