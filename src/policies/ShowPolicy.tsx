@@ -19,12 +19,19 @@ export const ShowPolicy = () => {
   }, [policyId]);
 
   return (
-    <div>
-      <h2>Policy Details</h2>
-      <p>{policy?.policyId}</p>
-      <p>{policy?.insurerBrandName}</p>
-      <p>{policy?.insurancePeriodValidFromDate}</p>
-      <p>{policy?.insurancePeriodValidToDate}</p>
+    <div className="space-y-4">
+      <div>
+        <p className="font-bold text-lg">Nr polisy</p>
+        <p>{policy?.policyId}</p>
+      </div>
+      <div>
+        <p className="font-bold text-lg">Nazwa ubezpieczyciela</p>
+        <p>{policy?.insurerBrandName}</p>
+      </div>
+      <div>
+        <p className="font-bold text-lg">Okres obowiązywania polisy</p>
+        <p>{policy?.insurancePeriodValidFromDate} - {policy?.insurancePeriodValidToDate}</p>
+      </div>
     </div>
   )
 }
