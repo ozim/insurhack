@@ -1,11 +1,10 @@
 import { Navbar } from '@/components/blocks/navbar'
 import { BrowserRouter, Route, Routes } from "react-router";
-import { Sergey } from './pages/sergey';
-import { Mateusz } from './pages/mateusz';
-import { Kuba } from '@/pages/kuba';
-import { Policies } from '@/pages/policies';
+import { Home } from '@/pages/Home';
 import PWABadge from '@/PWABadge';
-import { PolicyDetails } from '@/pages/policyDetails';
+import { PolicyDetails } from '@/pages/PolicyDetails';
+import { AddPolicy } from '@/pages/AddPolicy';
+import { EditPolicy } from '@/pages/EditPolicy';
 
 function App() {
   return (
@@ -14,11 +13,10 @@ function App() {
         <Navbar />
         <PWABadge />
         <Routes>
-          <Route path="/" element={<Policies />} />
+          <Route path="/" element={<Home />} />
           <Route path="/policy-details/:policyId" element={<PolicyDetails />} />
-          <Route path="/sergey" element={<Sergey />} />
-          <Route path="/mateusz" element={<Mateusz />} />
-          <Route path="/kuba" element={<Kuba />} />
+          <Route path="/add-policy" element={<AddPolicy />} />
+          <Route path="/edit-policy/:policyId" element={<EditPolicy />} />
         </Routes>
       </BrowserRouter>
     </>
