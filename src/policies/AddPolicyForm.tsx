@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { DatePicker } from "@/components/blocks/date-picker"
 import { addPolicy } from "@/localStorageService"
 import { format } from "date-fns"
+import { faker } from '@faker-js/faker';
 
 const formSchema = z.object({
   policyId: z.string(),
@@ -63,10 +64,26 @@ export const AddPolicyForm = () => {
     navigate("/");
   }
 
+  const handleClickReadExampleData = () => {
+    const policyNumber = faker.commerce.isbn();
+    const companyName = faker.company.name();
+    const dateRange = {
+      start: faker.date.past(),
+      end: faker.date.future()
+    };
+    form.setValue("policyNumber", policyNumber);
+    form.setValue("insurerBrandName", companyName);
+    form.setValue("insurancePeriodValidFromDate", dateRange.start);
+    form.setValue("insurancePeriodValidToDate", dateRange.end);
+  }
+
   return (
     <div className="space-y-10">
-      <Button variant="outline">
-        Odczytaj przykładowe dane
+      <Button
+        variant="outline"
+        onClick={handleClickReadExampleData}
+      >
+        Generuj przykładowe dane
       </Button>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -103,7 +120,7 @@ export const AddPolicyForm = () => {
             control={form.control}
             name="insurancePeriodValidFromDate"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col">
                 <FormLabel>Data rozpoczęcia</FormLabel>
                 <FormControl>
                   <DatePicker
@@ -119,7 +136,7 @@ export const AddPolicyForm = () => {
             control={form.control}
             name="insurancePeriodValidToDate"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col">
                 <FormLabel>Data zakończenia</FormLabel>
                 <FormControl>
                   <DatePicker
@@ -131,7 +148,7 @@ export const AddPolicyForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Dodaj</Button>
+          <Button className="w-56" type="submit">Dodaj</Button>
         </form>
       </Form>
     </div>
