@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { deletePolicy, getData } from "@/localStorageService";
+import { getData } from "@/localStorageService";
 import { Policy } from "@/types";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { EllipsisVerticalIcon } from "lucide-react";
@@ -16,12 +16,6 @@ export const PoliciesTable = () => {
     const { policies } = getData();
     setPolicies(policies);
   }, []);
-
-  const handleDeletePolicy = (policyId: string) => {
-    deletePolicy(policyId);
-    const { policies } = getData();
-    setPolicies(policies);
-  }
 
   if (policies.length === 0) {
     return (
@@ -72,10 +66,7 @@ export const PoliciesTable = () => {
                   {policy.insurancePeriodValidToDate}
                 </TableCell>
                 <TableCell className="text-right">
-                  <PolicyActions
-                    policyId={policy.policyId}
-                    onDelete={handleDeletePolicy}
-                  />
+                  <PolicyActions policyId={policy.policyId} />
                 </TableCell>
               </TableRow>
             );
@@ -87,9 +78,8 @@ export const PoliciesTable = () => {
   )
 }
 
-const PolicyActions = ({ policyId, onDelete }: {
+const PolicyActions = ({ policyId }: {
   policyId: string,
-  onDelete: (policyId: string) => void
 }) => {
   return (
     <DropdownMenu>
@@ -108,10 +98,6 @@ const PolicyActions = ({ policyId, onDelete }: {
           <Link to={`/policies/${policyId}/edit`}>
             Edytuj
           </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => onDelete(policyId)}>
-          Usuń
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
