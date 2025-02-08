@@ -11,9 +11,6 @@ export const ShowPolicy = () => {
   useEffect(() => {
     if (!policyId) return;
     const policy = getPolicyById(policyId);
-    console.log({
-      policy
-    })
     if (!policy) return;
     setPolicy(policy)
   }, [policyId]);

@@ -13,7 +13,7 @@ export const PoliciesTable = () => {
           Nie masz żadnych polis
         </div>
         <Button size="lg" asChild className="w-full">
-          <Link to="/add-policy">
+          <Link to="/policies/add">
             Dodaj pierwszą polisę
           </Link>
         </Button>
@@ -49,7 +49,7 @@ export const PoliciesTable = () => {
                 {policy.insurancePeriodValidToDate}
               </TableCell>
               <TableCell className="text-right">
-                <Link to={`/policy-details/${policy.policyId}`}>
+                <Link to={`/policies/${policy.policyId}`}>
                   <Button variant="secondary" size="sm">
                     View
                   </Button>

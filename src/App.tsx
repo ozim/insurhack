@@ -1,28 +1,24 @@
-import {Navbar} from '@/components/blocks/navbar'
-import {BrowserRouter, Route, Routes} from "react-router";
-import {Home} from '@/pages/Home';
-import {PolicyBuilder} from '@/pages/PolicyBuilder';
+import { Navbar } from '@/components/blocks/navbar'
+import { BrowserRouter, Route, Routes } from "react-router";
+import { Home } from '@/pages/Home';
+import { PolicyBuilder } from '@/pages/PolicyBuilder';
 import PWABadge from '@/PWABadge';
-import {PolicyDetails} from '@/pages/PolicyDetails';
-import {AddPolicy} from '@/pages/AddPolicy';
-import {EditPolicy} from '@/pages/EditPolicy';
+import { PolicyDetails } from '@/pages/PolicyDetails';
+import { AddPolicy } from '@/pages/AddPolicy';
+import { EditPolicy } from '@/pages/EditPolicy';
 
-function App() {
+export const App = () => {
   return (
-      <>
-        <BrowserRouter>
-          <Navbar/>
-          <PWABadge/>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/policy-details/:policyId" element={<PolicyDetails/>}/>
-            <Route path="/add-policy" element={<AddPolicy/>}/>
-            <Route path="/edit-policy/:policyId" element={<EditPolicy/>}/>
-            <Route path="/builder" element={<PolicyBuilder/>}/>
-          </Routes>
-        </BrowserRouter>
-      </>
+    <BrowserRouter>
+      <Navbar />
+      <PWABadge />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/policies/:policyId" element={<PolicyDetails />} />
+        <Route path="/policies/add" element={<AddPolicy />} />
+        <Route path="/policies/:policyId/edit" element={<EditPolicy />} />
+        <Route path="/builder" element={<PolicyBuilder />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App

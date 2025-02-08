@@ -19,6 +19,14 @@ export const addPolicy = (policy: Policy) => {
   });
 }
 
+export const deletePolicy = (policyId: string) => {
+  const data = getData();
+  saveData({
+    ...data,
+    policies: data.policies.filter((policy) => policy.policyId !== policyId)
+  });
+}
+
 const saveData = (data: AppData) => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
 }

@@ -15,7 +15,7 @@ export const Home = () => {
         </h2>
         {policies.length > 0 && (
           <Button>
-            <Link to="/add-policy">Dodaj polisę</Link>
+            <Link to="/policies/add">Dodaj polisę</Link>
           </Button>
         )}
       </header>

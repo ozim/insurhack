@@ -1,3 +1,5 @@
+import { EditPolicyForm } from "@/policies/EditPolicyForm"
+
 export const EditPolicy = () => {
   return (
     <div>
@@ -6,6 +8,9 @@ export const EditPolicy = () => {
           Edytuj Polisę
         </h2>
       </header>
+      <div className="px-4">
+        <EditPolicyForm />
+      </div>
     </div>
   )
 }
