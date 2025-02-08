@@ -18,7 +18,7 @@ export const MainMenu = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
-  
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
@@ -43,9 +43,6 @@ const LinksList = () => {
   return (
     <div className="flex flex-col space-y-4 mt-6">
       <Link to="/">
-        Klienci
-      </Link>
-      <Link to="/polisy">
         Polisy
       </Link>
       <Link to="/mateusz">

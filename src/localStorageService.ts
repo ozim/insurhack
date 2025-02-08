@@ -1,3 +1,5 @@
+import { AppData, Policy } from "@/fakeData";
+
 export const LOCALSTORAGE_KEY = 'insurhack-data';
 
 
@@ -21,15 +23,8 @@ const saveData = (data: AppData) => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
 }
 
-interface AppData {
-  policies: Policy[];
+export const getPolicyById = (policyId: string) => {
+  const data = getData();
+  return data.policies.find(policy => policy.policyId === policyId);
 }
 
-export interface Policy {
-  policyId: string;
-  insurerBrandName: string;
-  insurancePeriodValidFromDate: string;
-  insurancePeriodValidToDate: string;
-  documentList: any[];
-  premiumInstallmentList: any[];
-}

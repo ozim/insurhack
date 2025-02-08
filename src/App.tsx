@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Sergey } from './pages/sergey';
 import { Mateusz } from './pages/mateusz';
 import { Kuba } from '@/pages/kuba';
-import { Clients } from '@/pages/clients';
-import { Insurances } from '@/pages/insurances';
+import { Policies } from '@/pages/policies';
 import PWABadge from '@/PWABadge';
+import { PolicyDetails } from '@/pages/policyDetails';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
         <Navbar />
         <PWABadge />
         <Routes>
-          <Route path="/" element={<Clients />} />
-          <Route path="/polisy" element={<Insurances />} />
+          <Route path="/" element={<Policies />} />
+          <Route path="/policy-details/:policyId" element={<PolicyDetails />} />
           <Route path="/sergey" element={<Sergey />} />
           <Route path="/mateusz" element={<Mateusz />} />
           <Route path="/kuba" element={<Kuba />} />
