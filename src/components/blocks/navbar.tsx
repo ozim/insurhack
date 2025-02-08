@@ -1,38 +1,10 @@
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Link } from "react-router"
+import { MainMenu } from "@/components/blocks/main-menu"
 
 export const Navbar = () => {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link to="/mateusz">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Mateusz
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="/sergey">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Sergey
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="/kuba">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Kuba
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="flex justify-between items-center border-b border-gray-200 h-14">
+      <p>Insurhack</p>
+      <MainMenu />
+    </div>
   )
 }
