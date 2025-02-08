@@ -1,4 +1,5 @@
 import { MainMenu } from "@/components/blocks/main-menu"
+import { ThemeSwitch } from "@/components/blocks/theme-switch"
 import { Link } from "react-router"
 
 export const Navbar = () => {
@@ -7,7 +8,10 @@ export const Navbar = () => {
       <Link to="/" className="text-2xl font-bold px-4">
         <p>Insurhack</p>
       </Link>
-      <MainMenu />
+      <div>
+        <ThemeSwitch />
+        <MainMenu />
+      </div>
     </div>
   )
 }
