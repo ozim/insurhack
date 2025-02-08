@@ -7,6 +7,7 @@ import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { EllipsisVerticalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 export const PoliciesTable = () => {
   const [policies, setPolicies] = useState<Policy[]>([]);
@@ -38,47 +39,51 @@ export const PoliciesTable = () => {
   }
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Nr polisy</TableHead>
-          <TableHead >Nazwa ubezpieczyciela</TableHead>
-          <TableHead className="w-28">Data od</TableHead>
-          <TableHead className="w-28">Data do</TableHead>
-          <TableHead className="text-right w-28">Akcje</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {policies.map((policy) => {
-          return (
-            <TableRow key={policy.policyId}>
-              <TableCell className="font-medium">
-                <Button variant="link" asChild>
-                  <Link to={`/policies/${policy.policyId}`}>
+    <ScrollArea className="whitespace-nowrap rounded-md border">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Nr polisy</TableHead>
+            <TableHead>Nazwa ubezpieczyciela</TableHead>
+            <TableHead className="w-28">Data od</TableHead>
+            <TableHead className="w-28">Data do</TableHead>
+            <TableHead className="text-right w-28">Akcje</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {policies.map((policy) => {
+            return (
+              <TableRow key={policy.policyId}>
+                <TableCell className="font-medium">
+                  <Link
+                    to={`/policies/${policy.policyId}`}
+                    className="hover:underline"
+                  >
                     {policy.policyNumber}
                   </Link>
-                </Button>
-              </TableCell>
-              <TableCell>
-                {policy.insurerBrandName}
-              </TableCell>
-              <TableCell>
-                {policy.insurancePeriodValidFromDate}
-              </TableCell>
-              <TableCell>
-                {policy.insurancePeriodValidToDate}
-              </TableCell>
-              <TableCell className="text-right">
-                <PolicyActions
-                  policyId={policy.policyId}
-                  onDelete={handleDeletePolicy}
-                />
-              </TableCell>
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
+                </TableCell>
+                <TableCell>
+                  {policy.insurerBrandName}
+                </TableCell>
+                <TableCell>
+                  {policy.insurancePeriodValidFromDate}
+                </TableCell>
+                <TableCell>
+                  {policy.insurancePeriodValidToDate}
+                </TableCell>
+                <TableCell className="text-right">
+                  <PolicyActions
+                    policyId={policy.policyId}
+                    onDelete={handleDeletePolicy}
+                  />
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   )
 }
 

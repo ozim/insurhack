@@ -4,11 +4,11 @@ import { Link } from "react-router"
 
 export const Navbar = () => {
   return (
-    <div className="flex justify-between items-center border-b border-border h-14">
-      <Link to="/" className="text-2xl font-bold px-4">
+    <div className="flex justify-between items-center border-b border-border h-14 px-2">
+      <Link to="/" className="text-2xl font-bold">
         <p>Insurhack</p>
       </Link>
-      <div>
+      <div className="flex items-center gap-2">
         <ThemeSwitch />
         <MainMenu />
       </div>

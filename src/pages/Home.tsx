@@ -8,8 +8,8 @@ export const Home = () => {
   const { policies } = getData();
 
   return (
-    <div>
-      <header className="flex justify-between items-center py-10 px-4">
+    <div className="px-4">
+      <header className="flex justify-between items-center py-10">
         <h2 className="text-2xl font-bold">
           Polisy
         </h2>

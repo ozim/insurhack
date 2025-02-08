@@ -25,7 +25,7 @@ export const ThemeSwitch = () => {
   return (
     <Button
       onClick={toggleTheme}
-      variant="outline"
+      variant="ghost"
       size="icon"
     >
       {isDarkMode ? (

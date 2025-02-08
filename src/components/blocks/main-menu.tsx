@@ -22,7 +22,7 @@ export const MainMenu = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost">
+        <Button variant="outline" size="icon">
           <MenuIcon />
         </Button>
       </SheetTrigger>
