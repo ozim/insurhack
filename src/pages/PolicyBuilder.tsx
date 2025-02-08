@@ -19,7 +19,7 @@ export const PolicyBuilder = () => {
 
     return (
         <div>
-            <Button onClick={handleClickNewPolicy}>Nowy polis</Button>
+            <Button onClick={handleClickNewPolicy}>Ściągnij najlepszą ofertę nowej polisy prosto z iAPI</Button>
             {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
         </div>
     );
