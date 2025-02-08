@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useNavigate } from "react-router";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -13,39 +14,52 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { DatePicker } from "@/components/blocks/date-picker"
+import { addPolicy } from "@/localStorageService"
+import { Policy } from "@/types"
+import { format } from "date-fns"
 
 const formSchema = z.object({
-  policyId: z.string().min(2, {
-    message: "Numer polisy musi zawierać minimum 2 znaki.",
-  }),
-  insurerBrandName: z.string().min(2, {
-    message: "Nazwa wystawcy musi zawierać minimum 2 znaki.",
-  }),
-  insurancePeriodValidFromDate: z.string().min(2, {
-    message: "Data rozpoczęcia musi zawierać minimum 2 znaki.",
-  }),
-  insurancePeriodValidToDate: z.string().min(2, {
-    message: "Data zakończenia musi zawierać minimum 2 znaki.",
-  }),
+  policyId: z.string()
+    .min(6, {
+      message: "Numer polisy musi zawierać minimum 6 znaków.",
+    })
+    .max(30, {
+      message: "Numer polisy musi zawierać maksymalnie 30 znaków.",
+    }),
+  insurerBrandName: z.string()
+    .min(4, {
+      message: "Nazwa wystawcy musi zawierać minimum 4 znaki.",
+    })
+    .max(30, {
+      message: "Nazwa wystawcy musi zawierać maksymalnie 30 znaków.",
+    }),
+  insurancePeriodValidFromDate: z.date(),
+  insurancePeriodValidToDate: z.date(),
 })
 
 export const AddPolicyForm = () => {
-  // 1. Define your form.
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       policyId: "",
       insurerBrandName: "",
-      insurancePeriodValidFromDate: "",
-      insurancePeriodValidToDate: "",
+      insurancePeriodValidFromDate: new Date(),
+      insurancePeriodValidToDate: new Date(),
     },
   })
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    addPolicy({
+      ...values,
+      insurancePeriodValidFromDate: format(values.insurancePeriodValidFromDate, "yyyy-MM-dd"),
+      insurancePeriodValidToDate: format(values.insurancePeriodValidToDate, "yyyy-MM-dd"),
+      documentList: [],
+      premiumInstallmentList: [],
+    });
+    navigate("/");
   }
 
   return (
@@ -91,7 +105,10 @@ export const AddPolicyForm = () => {
               <FormItem>
                 <FormLabel>Data rozpoczęcia</FormLabel>
                 <FormControl>
-                  <Input placeholder="2024-01-01" {...field} />
+                  <DatePicker
+                    date={field.value ? new Date(field.value) : new Date()}
+                    setDate={(date) => field.onChange(date)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,7 +121,10 @@ export const AddPolicyForm = () => {
               <FormItem>
                 <FormLabel>Data zakończenia</FormLabel>
                 <FormControl>
-                  <Input placeholder="2024-01-01" {...field} />
+                  <DatePicker
+                    date={field.value ? new Date(field.value) : new Date()}
+                    setDate={(date) => field.onChange(date)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

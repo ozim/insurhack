@@ -3,7 +3,7 @@ import { AppData, Policy } from "@/types";
 export const LOCALSTORAGE_KEY = 'insurhack-data';
 
 
-const getData = (): AppData => {
+export const getData = (): AppData => {
   const data = localStorage.getItem(LOCALSTORAGE_KEY);
   return data ? JSON.parse(data) : { policies: [] };
 }
@@ -27,6 +27,6 @@ export const getPolicies = () => getData().policies;
 
 export const getPolicyById = (policyId: string) => {
   const data = getData();
-  return data.policies.find(policy => policy.policyId === policyId);
+  return data.policies.find((policy) => policy.policyId === policyId);
 }
 
