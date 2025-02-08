@@ -10,7 +10,9 @@ export const PolicyBuilder = () => {
         axios.get("http://localhost:8000")
             .then(response => {
                 const policy = randomizeData(mapData(response.data));
+                // @ts-expect-error
                 setData(policy)
+                // @ts-expect-error
                 addPolicy(policy)
             });
     }
