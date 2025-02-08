@@ -5,12 +5,14 @@ import { Mateusz } from './pages/mateusz';
 import { Kuba } from '@/pages/kuba';
 import { Clients } from '@/pages/clients';
 import { Insurances } from '@/pages/insurances';
+import PWABadge from '@/PWABadge';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <PWABadge />
         <Routes>
           <Route path="/" element={<Clients />} />
           <Route path="/polisy" element={<Insurances />} />

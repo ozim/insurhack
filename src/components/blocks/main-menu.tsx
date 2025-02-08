@@ -8,11 +8,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
+import { useEffect, useState } from "react"
 
 export const MainMenu = () => {
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+  
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost">
           <MenuIcon />
