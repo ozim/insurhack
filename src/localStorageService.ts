@@ -19,6 +19,14 @@ export const addPolicy = (policy: Policy) => {
   });
 }
 
+export const updatePolicy = (policy: Policy) => {
+  const data = getData();
+  saveData({
+    ...data,
+    policies: data.policies.map((p) => p.policyId === policy.policyId ? policy : p)
+  });
+}
+
 export const deletePolicy = (policyId: string) => {
   const data = getData();
   saveData({

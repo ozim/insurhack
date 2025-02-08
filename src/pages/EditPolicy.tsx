@@ -24,7 +24,7 @@ export const EditPolicy = () => {
           Edytuj Polisę
         </h2>
       </header>
-      <div className="px-4">
+      <div className="px-4 space-y-14">
         <EditPolicyForm />
         <RemoveSection />
       </div>
