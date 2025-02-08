@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { getPolicies } from "@/localStorageService";
 import { AppData } from "@/types";
 import { Link } from "react-router";
 
@@ -45,7 +46,10 @@ export const PoliciesTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {FAKE_DATA.policies.map((policy) => {
+        {[
+          ...FAKE_DATA.policies,
+          ...getPolicies(),
+        ].map((policy) => {
           return (
             <TableRow key={policy.policyId}>
               <TableCell className="font-medium">

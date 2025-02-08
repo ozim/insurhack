@@ -1,4 +1,4 @@
-import { AppData, Policy } from "@/fakeData";
+import { AppData, Policy } from "@/types";
 
 export const LOCALSTORAGE_KEY = 'insurhack-data';
 
@@ -22,6 +22,8 @@ export const addPolicy = (policy: Policy) => {
 const saveData = (data: AppData) => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
 }
+
+export const getPolicies = () => getData().policies;
 
 export const getPolicyById = (policyId: string) => {
   const data = getData();
