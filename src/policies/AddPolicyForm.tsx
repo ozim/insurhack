@@ -19,6 +19,6 @@ export const AddPolicyForm = () => {
   }
 
   return (
-    <PolicyForm onSubmit={onSubmit} submitButtonText="Dodaj" />
+    <PolicyForm onSubmit={onSubmit} submitButtonText="Dodaj" showExampleDataButton />
   )
 };
