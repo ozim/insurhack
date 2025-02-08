@@ -54,6 +54,9 @@ const LinksList = () => {
       <Link to="/kuba">
         Kuba
       </Link>
+      <Link to="/builder">
+          Porównywarka polis
+      </Link>
     </div>
   );
 }
