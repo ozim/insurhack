@@ -130,35 +130,3 @@ export class IndexedDBHelper {
       });
     }
   }
-  
-  // Example usage
-  const dbHelper = new IndexedDBHelper();
-  
-  // Storing data
-  const newData = { name: 'John Doe', value: 'Some data here', timestamp: new Date().toISOString() };
-  dbHelper.storeData(newData).then(() => {
-    console.log('Data stored successfully!');
-  }).catch((error) => {
-    console.error('Error storing data:', error);
-  });
-  
-  // Fetching data
-  dbHelper.fetchData().then((data) => {
-    console.log('Fetched data:', data);
-  }).catch((error) => {
-    console.error('Error fetching data:', error);
-  });
-  
-  // Updating data
-  dbHelper.updateData(1, { name: 'Jane Doe', value: 'Updated data' }).then(() => {
-    console.log('Data updated successfully!');
-  }).catch((error) => {
-    console.error('Error updating data:', error);
-  });
-  
-  // Deleting data
-  dbHelper.deleteData(1).then(() => {
-    console.log('Data deleted successfully!');
-  }).catch((error) => {
-    console.error('Error deleting data:', error);
-  });

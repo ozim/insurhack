@@ -1,7 +1,8 @@
 import { IndexedDBHelper } from './IndexedDBHelper';
-import { FileStorage } from './FIleStorage';
+import { FileStorage } from './FileStorage';
+import { StoredFile } from './FileStorage';
 
-class DataService {
+export class DataService {
     private apiUrl: string;
     private dbHelper: IndexedDBHelper;
     private fileStorage: FileStorage;
@@ -13,7 +14,7 @@ class DataService {
     }
   
     // Fetch data from the API
-    private async fetchDataFromApi(): Promise<any[]> {
+    private async fetchDataFromApi(): Promise<any> {
       try {
         const response = await fetch(this.apiUrl);
         if (!response.ok) {
@@ -28,20 +29,32 @@ class DataService {
     }
   
     // Map the API response to the desired structure
-    private mapData(apiData: any[]): any[] {
-      return apiData.map(item => ({
-        name: item.name,             // Assuming 'name' exists in API response
-        value: item.value,           // Assuming 'value' exists in API response
-        timestamp: new Date().toISOString() // Adding timestamp for when the data is saved
-      }));
+    private mapData(apiData: any): any {
+      return {
+        insurerBrandName: apiData.insurerBrandName,
+        insurancePeriodValidFromDate: apiData.insurancePeriodValidFromDate,
+        insurancePeriodValidToDate: apiData.insurancePeriodValidToDate,
+        documentList: apiData.documentList.map((document: any) => ({
+          documentId: document.documentId,
+          type: document.type,
+          fileName: document.fileName,
+          description: document.description,
+        })),
+        premiumInstallmentList: apiData.premiumInstallmentList.map((premiumInstallment: any) => ({
+            installmentId: premiumInstallment.installmentId,
+            policyId: premiumInstallment.policyId,
+            value: premiumInstallment.value,
+            currency: premiumInstallment.currency,
+            installmentNo: premiumInstallment.installmentNo,
+            dueDate: premiumInstallment.dueDate
+        }))
+      }
     }
   
     // Save the mapped data into IndexedDB
-    private async saveDataToDB(mappedData: any[]): Promise<void> {
+    private async saveDataToDB(mappedData: any): Promise<void> {
       try {
-        for (const data of mappedData) {
-          await this.dbHelper.storeData(data); // Save each mapped data item into IndexedDB
-        }
+        await this.dbHelper.storeData(mappedData);
         console.log('Data saved successfully to IndexedDB');
       } catch (error) {
         console.error('Error saving data to IndexedDB:', error);
@@ -60,20 +73,34 @@ class DataService {
   
         // Save the mapped data to IndexedDB
         await this.saveDataToDB(mappedData);
+
+        apiData.documentList.forEach((document: any) => {
+            this.fileStorage.saveFile(document.documentId, document.documentData);
+          });
   
         console.log('Process completed: Data loaded and saved to IndexedDB');
       } catch (error) {
         console.error('Error during the process of loading and saving data:', error);
       }
     }
+
+    public async getData(): Promise<any> {
+      try {
+        const data = await this.dbHelper.fetchData();
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+      }
+    }
+
+    public async getFile(fileName: string): Promise<StoredFile | null> {
+      try {
+        const file = await this.fileStorage.getFile(fileName);
+        return file;
+      } catch (error) {
+        console.error('Error retrieving file:', error);
+        return null;
+      }
+    }
   }
-  
-  // Example usage:
-  // Create an instance of the DataService with the API URL
-  const dataService = new DataService('http://localhost:8000'); // Replace with your API URL
-  
-  // Call the method to load data and save to IndexedDB
-  dataService.loadDataAndSaveToDB().catch(error => {
-    console.error('Error during data load/save:', error);
-  });
-  

@@ -1,7 +1,7 @@
-import { indexedDB, IDBDatabase, IDBOpenDBRequest } from 'fake-indexeddb';
+import { indexedDB } from 'fake-indexeddb';
 
 // Interface for file structure
-interface StoredFile {
+export interface StoredFile {
   id?: number;
   name: string;
   content: string | Blob;
@@ -14,6 +14,7 @@ export class FileStorage {
 
   constructor(dbName: string = 'FileDB') {
     this.dbName = dbName;
+    this.init();
   }
 
   // Initialize IndexedDB

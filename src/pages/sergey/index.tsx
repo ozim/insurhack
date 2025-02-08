@@ -1,3 +1,14 @@
+import { DataService } from "./DataService"
+
 export const Sergey = () => {
-  return <div>Sergey</div>
+  var dataService = new DataService("http://localhost:8000");
+  dataService.loadDataAndSaveToDB();
+  dataService.getData().then(data => console.log(data));
+  return (
+    <div>
+      {
+        dataService.getData()
+      }
+    </div>
+  );
 }
