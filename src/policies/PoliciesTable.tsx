@@ -1,38 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { AppData } from "@/types";
+import { getData } from "@/localStorageService";
 import { Link } from "react-router";
 
-const FAKE_DATA: AppData = {
-  policies: [
-    {
-      policyId: "1",
-      insurerBrandName: "Brand 1",
-      insurancePeriodValidFromDate: "2024-01-01",
-      insurancePeriodValidToDate: "2024-01-01",
-      documentList: [],
-      premiumInstallmentList: [],
-    },
-    {
-      policyId: "2",
-      insurerBrandName: "Brand 2",
-      insurancePeriodValidFromDate: "2024-01-01",
-      insurancePeriodValidToDate: "2024-01-01",
-      documentList: [],
-      premiumInstallmentList: [],
-    },
-    {
-      policyId: "3",
-      insurerBrandName: "Brand 3",
-      insurancePeriodValidFromDate: "2024-01-01",
-      insurancePeriodValidToDate: "2024-01-01",
-      documentList: [],
-      premiumInstallmentList: [],
-    },
-  ]
-}
-
 export const PoliciesTable = () => {
+  const { policies} = getData();
+
   return (
     <Table>
       <TableHeader>
@@ -45,7 +18,14 @@ export const PoliciesTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {FAKE_DATA.policies.map((policy) => {
+        {policies.length === 0 && (
+          <TableRow>
+            <TableCell colSpan={4} className="text-center">
+              Nie masz żadnych polis
+            </TableCell>
+          </TableRow>
+        )}
+        {policies.map((policy) => {
           return (
             <TableRow key={policy.policyId}>
               <TableCell className="font-medium">
