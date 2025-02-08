@@ -21,6 +21,11 @@ export const App = () => {
         <Route path="/builder" element={<PolicyBuilder />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <footer className="py-10 px-4 text-center sm:text-left text-muted-foreground text-xs">
+        <p>
+          &copy; 2025 Insr.pl
+        </p>
+      </footer>
     </BrowserRouter>
   )
 }
