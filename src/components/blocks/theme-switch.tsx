@@ -4,7 +4,9 @@ import { SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const ThemeSwitch = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
 
   useEffect(() => {
     const html = document.documentElement;
@@ -17,6 +19,7 @@ export const ThemeSwitch = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+    localStorage.setItem("theme", !isDarkMode ? "dark" : "light");
   };
 
   return (
