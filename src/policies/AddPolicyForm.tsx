@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useNavigate } from "react-router";
-
+import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -16,11 +16,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { DatePicker } from "@/components/blocks/date-picker"
 import { addPolicy } from "@/localStorageService"
-import { Policy } from "@/types"
 import { format } from "date-fns"
 
 const formSchema = z.object({
-  policyId: z.string()
+  policyId: z.string(),
+  policyNumber: z.string()
     .min(6, {
       message: "Numer polisy musi zawierać minimum 6 znaków.",
     })
@@ -44,7 +44,8 @@ export const AddPolicyForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      policyId: "",
+      policyId: uuidv4(),
+      policyNumber: "",
       insurerBrandName: "",
       insurancePeriodValidFromDate: new Date(),
       insurancePeriodValidToDate: new Date(),
@@ -71,7 +72,7 @@ export const AddPolicyForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="policyId"
+            name="policyNumber"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Numer polisy</FormLabel>
