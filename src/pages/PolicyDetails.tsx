@@ -1,29 +1,16 @@
-import { Policy } from "@/fakeData";
-import { getPolicyById } from "@/localStorageService";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { ShowPolicy } from "@/policies/ShowPolicy";
 
 export const PolicyDetails = () => {
-  const { policyId } = useParams();
-  const [policy, setPolicy] = useState<Policy | null>(null);
-
-  useEffect(() => {
-    if (!policyId) return;
-    const policy = getPolicyById(policyId);
-    console.log({
-      policy
-    })
-    if (!policy) return;
-    setPolicy(policy)
-  }, [policyId]);
-
   return (
     <div>
-      <h2>Policy Details</h2>
-      <p>{policy?.policyId}</p>
-      <p>{policy?.insurerBrandName}</p>
-      <p>{policy?.insurancePeriodValidFromDate}</p>
-      <p>{policy?.insurancePeriodValidToDate}</p>
+      <header className="flex justify-between items-center py-10 px-4">
+        <h2 className="text-2xl font-bold">
+          Polisa
+        </h2>
+      </header>
+      <div className="px-4">
+        <ShowPolicy />
+      </div>
     </div>
-  )
+  );
 }
