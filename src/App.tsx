@@ -6,6 +6,7 @@ import PWABadge from '@/PWABadge';
 import { PolicyDetails } from '@/pages/PolicyDetails';
 import { AddPolicy } from '@/pages/AddPolicy';
 import { EditPolicy } from '@/pages/EditPolicy';
+import { Contact } from '@/pages/Contact';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         <Route path="/policies/add" element={<AddPolicy />} />
         <Route path="/policies/:policyId/edit" element={<EditPolicy />} />
         <Route path="/builder" element={<PolicyBuilder />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   )
