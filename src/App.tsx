@@ -11,7 +11,7 @@ import { Contact } from '@/pages/Contact';
 export const App = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col justify-between">
+      <div className="min-h-[90vh] flex flex-col justify-between">
         <div>
           <Navbar />
           <PWABadge />
