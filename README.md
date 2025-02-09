@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Whitepaper: Insr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Wprowadzenie
 
-Currently, two official plugins are available:
+Insr to innowacyjna aplikacja zaprojektowana z myślą o agentach ubezpieczeniowych, która ma na celu zrewolucjonizowanie sposobu zarządzania polisami oraz automatyzację codziennych zadań. Dzięki integracji z iAPI.pl, Insr zapewnia dostęp do 24 towarzystw ubezpieczeniowych, co czyni ją nieocenionym narzędziem dla profesjonalistów w branży ubezpieczeniowej.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Misja
 
-## Expanding the ESLint configuration
+Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie tylko usprawni ich pracę, ale także zwiększy efektywność i zadowolenie klientów. Insr łączy w sobie nowoczesne technologie z intuicyjnym interfejsem, oferując kompleksowe rozwiązania dla branży ubezpieczeniowej.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Kluczowe Funkcje
 
-- Configure the top-level `parserOptions` property like this:
+1. **Integracja z iAPI.pl**: Bezpośredni dostęp do 24 towarzystw ubezpieczeniowych, co umożliwia szybkie porównanie ofert i wybór najlepszej opcji dla klienta.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Dostęp Offline**: Użytkownicy mogą korzystać z aplikacji bez potrzeby stałego połączenia z internetem, co jest szczególnie przydatne w terenie.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. **Import Danych**: Obsługa plików Excel i CSV umożliwia łatwe przenoszenie danych do aplikacji.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. **Brak Kosztów Wdrożenia**: Insr jest gotowy do użycia bez dodatkowych opłat instalacyjnych.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. **Uniwersalna Instalacja**: Aplikacja działa na wszystkich urządzeniach, zarówno mobilnych, jak i stacjonarnych.
+
+6. **Lokalne Przechowywanie Danych**: Dane są przechowywane lokalnie, co zapewnia pełną kontrolę nad prywatnością i bezpieczeństwem danych osobowych.
+
+7. **Szyfrowany Backup w Chmurze**: Bezpieczne kopie zapasowe w prywatnej, w pełni szyfrowanej chmurze.
+
+8. **Kontrola Dostępu**: Dzięki integracji z walletami krypto, użytkownicy mają pełną kontrolę nad dostępem do aplikacji.
+
+9. **White Label**: Możliwość dostosowania aplikacji do indywidualnych potrzeb i brandingu.
+
+10. **Nowoczesny UX/UI**: Intuicyjny interfejs użytkownika wykorzystujący najnowsze technologie przeglądarkowe.
+
+11. **Powiadomienia**: Automatyczne przypomnienia o kończących się polisach i badaniach technicznych pojazdów.
+
+12. **Integracja z Kalendarzem Google**: Synchronizacja bazy klientów z popularnymi serwisami do zarządzania spotkaniami.
+
+13. **Analiza Finansowa**: Wgląd w prowizje i finanse zespołu dzięki zaawansowanym wykresom i raportom.
+
+## Korzyści
+
+- **Zwiększona Efektywność**: Automatyzacja procesów pozwala agentom skupić się na kluczowych zadaniach.
+- **Bezpieczeństwo Danych**: Lokalna kontrola nad danymi oraz szyfrowane kopie zapasowe zapewniają najwyższy poziom bezpieczeństwa.
+- **Elastyczność**: Możliwość dostosowania aplikacji do indywidualnych potrzeb użytkownika.
+
+## Podsumowanie
+
+Insr to kompleksowe rozwiązanie dla agentów ubezpieczeniowych, które łączy w sobie nowoczesne technologie z intuicyjnym interfejsem. Dzięki szerokiej gamie funkcji i korzyści, Insr jest idealnym narzędziem do zarządzania polisami i automatyzacji pracy w branży ubezpieczeniowej.
