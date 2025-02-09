@@ -129,7 +129,7 @@ export const PolicyBuilder = () => {
                             />
                         </div>
                         <Button asChild className="w-full bg-blue-500 text-white py-2 rounded-2xl">
-                            <Link to={`/polisy`}>
+                            <Link to={`/`}>
                                 Wyślij do agenta
                             </Link>
                         </Button>

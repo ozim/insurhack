@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export class IApiIntegration {
-    private readonly baseUrl: string = process.env.REACT_APP_I_API_BASE_URL || "";
-    private readonly realm: string = process.env.IAPI_REALM || "";
+    private readonly baseUrl: string = import.meta.env.IAPI_BASE_URL || "";
+    private readonly realm: string = import.meta.env.IAPI_REALM || "";
 
     /*
     * POST 1 - IAPI generate-token
