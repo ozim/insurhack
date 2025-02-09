@@ -62,6 +62,68 @@ export const PolicyBuilder = () => {
         await sleep(1000);
         navigate('/');
     }
+    const mapData = (apiData: any) => {
+        return {
+            policyId: apiData.policyId,
+            insurerBrandName: apiData.insurerBrandName,
+            insurancePeriodValidFromDate: apiData.insurancePeriodValidFromDate,
+            insurancePeriodValidToDate: apiData.insurancePeriodValidToDate,
+            documentList: apiData.documentList.map((document: any) => ({
+                documentId: document.documentId,
+                type: document.type,
+                fileName: document.fileName,
+                description: document.description,
+                documentData: document.documentData
+            })),
+            premiumInstallmentList: apiData.premiumInstallmentList.map((premiumInstallment: any) => ({
+                installmentId: premiumInstallment.installmentId,
+                policyId: premiumInstallment.policyId,
+                value: premiumInstallment.value,
+                currency: premiumInstallment.currency,
+                installmentNo: premiumInstallment.installmentNo,
+                dueDate: premiumInstallment.dueDate
+            }))
+        }
+    }
+    const handleClickNewPolicy = () => {
+        axios.get("/response.json")
+            .then(response => {
+                const policy = randomizeData(mapData(response.data));
+                // @ts-expect-error
+                setData(policy)
+                // @ts-expect-error
+                addPolicy(policy)
+            });
+    }
+    const randomizeData = (apiData: any) => {
+        return {
+            policyId: crypto.randomUUID(),
+            insurerBrandName: apiData.insurerBrandName + "_" + crypto.randomUUID().slice(0, 8),
+            insurancePeriodValidFromDate: new Date(
+                Date.parse(apiData.insurancePeriodValidFromDate) +
+                Math.floor(Math.random() * 365) * 24 * 60 * 60 * 1000
+            ).toISOString(),
+            insurancePeriodValidToDate: new Date(
+                Date.parse(apiData.insurancePeriodValidToDate) +
+                (Math.floor(Math.random() * 365 * 5) + 365 * 5) * 24 * 60 * 60 * 1000
+            ).toISOString(),
+            documentList: apiData.documentList.map((document: any) => ({
+                documentId: crypto.randomUUID(),
+                type: document.type,
+                fileName: document.fileName,
+                description: document.description,
+                documentData: document.documentData
+            })),
+            premiumInstallmentList: apiData.premiumInstallmentList.map((premiumInstallment: any) => ({
+                installmentId: premiumInstallment.installmentId,
+                policyId: premiumInstallment.policyId,
+                value: premiumInstallment.value,
+                currency: premiumInstallment.currency,
+                installmentNo: premiumInstallment.installmentNo,
+                dueDate: premiumInstallment.dueDate
+            }))
+        }
+    }
 
     return (
         <div className="p-6 max-w-xl mx-auto space-y-4">
@@ -183,6 +245,11 @@ export const PolicyBuilder = () => {
                     )}
                 </form>
             </Form>
+            <div>
+         <Button onClick={handleClickNewPolicy}>Ściągnij najlepszą ofertę nowej polisy prosto z iAPI</Button>
+         
+        </div>
         </div >
+
     );
 }
