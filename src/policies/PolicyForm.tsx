@@ -117,7 +117,7 @@ export const PolicyForm = ({ onSubmit, initialValues, showExampleDataButton = fa
             control={form.control}
             name="insurancePeriodValidFromDate"
             render={({ field }) => (
-              <FormItem className="flex flex-col">
+              <FormItem className="flex flex-col gap-2">
                 <FormLabel>Data rozpoczęcia</FormLabel>
                 <FormControl>
                   <DatePicker
@@ -133,7 +133,7 @@ export const PolicyForm = ({ onSubmit, initialValues, showExampleDataButton = fa
             control={form.control}
             name="insurancePeriodValidToDate"
             render={({ field }) => (
-              <FormItem className="flex flex-col">
+              <FormItem className="flex flex-col gap-2">
                 <FormLabel>Data zakończenia</FormLabel>
                 <FormControl>
                   <DatePicker
