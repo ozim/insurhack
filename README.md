@@ -14,7 +14,7 @@ Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie 
 - **Bezpieczeństwo Danych**: Lokalna kontrola nad danymi oraz szyfrowane kopie zapasowe zapewniają najwyższy poziom bezpieczeństwa.
 - **Elastyczność**: Możliwość dostosowania aplikacji do indywidualnych potrzeb użytkownika.
 
-![Screenshot aplikacji]("./public/app-screenshot-1.png")
+![Screenshot aplikacji](./public/app-screenshot-1.png)
 
 
 ## Kluczowe Funkcje
