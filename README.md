@@ -1,5 +1,7 @@
 # Whitepaper: Insr
 
+<img src="./images/logo-insr.png" alt="Logo aplikacji Insr" height="100" />
+
 ## Wprowadzenie
 
 Insr to innowacyjna aplikacja zaprojektowana z myślą o agentach ubezpieczeniowych, która ma na celu zrewolucjonizowanie sposobu zarządzania polisami oraz automatyzację codziennych zadań. Dzięki integracji z iAPI.pl, Insr zapewnia dostęp do 24 towarzystw ubezpieczeniowych, co czyni ją nieocenionym narzędziem dla profesjonalistów w branży ubezpieczeniowej.
