@@ -7,7 +7,7 @@ import axios from "axios";
 export const PolicyBuilder = () => {
     const [data, setData] = useState<Policy>();
     const handleClickNewPolicy = () => {
-        axios.get("http://localhost:5173/src/assets/response.json")
+        axios.get("/response.json")
             .then(response => {
                 const policy = randomizeData(mapData(response.data));
                 // @ts-expect-error
