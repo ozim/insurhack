@@ -1,148 +1,188 @@
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DatePicker } from "@/components/blocks/date-picker";
-import { Link } from "react-router";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { BriefcaseBusinessIcon, CarIcon, HeartIcon, HomeIcon, LeafIcon, LoaderCircleIcon, LuggageIcon } from 'lucide-react';
+import { cn, sleep } from '@/lib/utils';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
+
+export const formSchema = z.object({
+    startDate: z.date(),
+    name: z.string(),
+    email: z.string(),
+    phone: z.string(),
+    postCode: z.string().regex(/^[0-9]{2}-[0-9]{3}$/),
+    insuranceOptions: z.array(z.number()),
+})
 
 const insuranceOptions = [
-    { id: 1, label: 'Pojazd', image: 'https://img.icons8.com/?size=100&id=12666&format=png' },
-    { id: 2, label: 'Mieszkanie', image: 'https://img.icons8.com/?size=100&id=73&format=png' },
-    { id: 3, label: 'Podróż', image: 'https://img.icons8.com/?size=100&id=648&format=png' },
-    { id: 4, label: 'Zdrowie życie', image: 'https://img.icons8.com/?size=100&id=35583&format=png' },
-    { id: 5, label: 'Biznes', image: 'https://img.icons8.com/?size=100&id=7Yl8hX5gHFhC&format=png' },
-    { id: 6, label: 'Rolne', image: 'https://img.icons8.com/?size=100&id=794&format=png' }
+    { id: 1, label: 'Pojazd', icon: <CarIcon size={50} /> },
+    { id: 2, label: 'Mieszkanie', icon: <HomeIcon size={50} /> },
+    { id: 3, label: 'Podróż', icon: <LuggageIcon size={50} /> },
+    { id: 4, label: 'Zdrowie życie', icon: <HeartIcon size={50} /> },
+    { id: 5, label: 'Biznes', icon: <BriefcaseBusinessIcon size={50} /> },
+    { id: 6, label: 'Rolne', icon: <LeafIcon size={50} /> }
 ];
 
 export const PolicyBuilder = () => {
-    const [startDate, setStartDate] = useState();
-    const [postCode, setPostCode] = useState('');
-    const [postCodeError, setPostCodeError] = useState('');
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const navigate = useNavigate();
 
-    const [showFields, setShowFields] = useState(false);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            startDate: new Date(),
+            name: '',
+            email: '',
+            phone: '',
+            postCode: '',
+            insuranceOptions: [],
+        },
+    })
 
-    const handleOptionChange = (id) => {
-        setSelectedOptions((prev) =>
-            prev.includes(id) ? prev.filter((option) => option !== id) : [...prev, id]
-        );
-    };
+    const [showSecondStep, setShowSecondStep] = useState(false);
+    const [isSending, setIsSending] = useState(false);
 
-    const handleCompare = () => {
-        setShowFields(true);
-    };
+    const selectedOptions = form.getValues('insuranceOptions');
+
+    const handleOptionChange = (id: number) => {
+        if (selectedOptions.includes(id)) {
+            form.setValue('insuranceOptions', selectedOptions.filter(option => option !== id));
+        } else {
+            form.setValue('insuranceOptions', [...selectedOptions, id]);
+        }
+    }
+
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
+        console.log(data);
+        setIsSending(true);
+        await sleep(1000);
+        navigate('/');
+    }
 
     return (
         <div className="p-6 max-w-xl mx-auto space-y-4">
-            <h1 className="text-2xl font-bold text-center">Znajdź najlepszą ofertę</h1>
-            {!showFields && (
-                <div className="flex items-center space-x-4 p-4 justify-between">
-                    <label htmlFor="start-date" className="font-medium text-gray-800 w-50 md:w-auto">
-                        Od kiedy potrzebujesz ubezpieczenia?
-                    </label>
-                    <DatePicker
-                        date={startDate || new Date()}
-                        setDate={(data) => { setStartDate(data) }}
-                    />
-                </div>
-            )}
-            {!showFields && (
-                <Input
-                    type="text"
-                    value={postCode}
-                    onChange={(e) => {
-                        const value = e.target.value;
-                        setPostCode(value);
-                        const postalCodePattern = /^[0-9]{2}-[0-9]{3}$/;
+            <h2 className="text-2xl font-bold text-center">
+                Znajdź najlepszą ofertę
+            </h2>
 
-                        if (!postalCodePattern.test(value)) {
-                            setPostCodeError('Please enter a valid postal code (e.g., 12-345)');
-                        } else {
-                            setPostCodeError('');
-                        }
-                    }}
-                    placeholder="Podaj kod pocztowy"
-                />
-            )}
-            {!showFields && postCodeError && <span className="text-red-500 text-sm">{postCodeError}</span>}
-
-            {!showFields && (
-                <div className="grid grid-cols-3 gap-4">
-                    {insuranceOptions.map((option) => (
-                        <div
-                            key={option.id}
-                            className={`cursor-pointer p-4 text-center rounded-2xl shadow-md border-2 ${selectedOptions.includes(option.id) ? 'border-blue-500' : 'border-gray-300'
-                                }`}
-                            onClick={() => handleOptionChange(option.id)}>
-                            <picture>
-                                <img src={`${option.image}&color=FF0000}`} alt={option.label} className="mx-auto mb-2" />
-                            </picture>
-                            <div>{option.label}</div>
-                        </div>
-                    ))}
-                </div>
-            )}
-            <div className="p-4">
-                {showFields && (
-                    <div className="mt-4">
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block font-medium text-gray-800">
-                                Name
-                            </label>
-                            <input
-                                id="name"
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Enter your name"
-                                className="w-full border p-2 rounded"
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    {!showSecondStep && (
+                        <>
+                            <FormField
+                                control={form.control}
+                                name="startDate"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col gap-2">
+                                        <FormLabel>
+                                            Od kiedy potrzebujesz ubezpieczenia?
+                                        </FormLabel>
+                                        <FormControl>
+                                            <DatePicker
+                                                date={field.value ? new Date(field.value) : new Date()}
+                                                setDate={(date) => field.onChange(date)}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
                             />
-                        </div>
-
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block font-medium text-gray-800">
-                                Email
-                            </label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email"
-                                className="w-full border p-2 rounded"
+                            <FormField
+                                control={form.control}
+                                name="postCode"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Kod pocztowy</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="12-345" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
                             />
-                        </div>
+                            <div className="grid grid-cols-3 gap-4">
+                                {insuranceOptions.map(({ id, label, icon }) => {
+                                    const isSelected = selectedOptions.includes(id);
 
-                        <div className="mb-4">
-                            <label htmlFor="phone" className="block font-medium text-gray-800">
-                                Phone Number
-                            </label>
-                            <input
-                                id="phone"
-                                type="tel"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                placeholder="Enter your phone number"
-                                className="w-full border p-2 rounded"
+                                    return (
+                                        <button
+                                            key={id}
+                                            className={cn('cursor-pointer p-4 flex flex-col items-center rounded-2xl hover:shadow-md border-2', {
+                                                'border-foreground': isSelected,
+                                                'border-muted': !isSelected,
+                                            })}
+                                            onClick={() => handleOptionChange(id)}
+                                        >
+                                            {icon}
+                                            <div className="font-bold">{label}</div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            <Button className="w-56" type="button" onClick={() => setShowSecondStep(true)}>
+                                Porównaj oferty
+                            </Button>
+                        </>
+                    )}
+
+                    {showSecondStep && (
+                        <>
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Imię i nazwisko</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="12-345" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
                             />
-                        </div>
-                        <Button asChild className="w-full bg-blue-500 text-white py-2 rounded-2xl">
-                            <Link to={`/`}>
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="example@gmail.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="phone"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Telefon</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="123-456-789" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                className="flex items-center gap-2"
+                                type="submit"
+                                disabled={isSending}
+                            >
+                                {isSending && <LoaderCircleIcon className="w-4 h-4 animate-spin" />}
                                 Wyślij do agenta
-                            </Link>
-                        </Button>
-                    </div>
-                )}
-
-                {!showFields && (<Button className="w-full bg-blue-500 text-white py-2 rounded-2xl" onClick={handleCompare}>
-                    Porównaj oferty
-                </Button>)}
-
-
-
-            </div>
+                            </Button>
+                        </>
+                    )}
+                </form>
+            </Form>
         </div >
     );
 }

@@ -28,9 +28,9 @@ export const MainMenu = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Insurhack</SheetTitle>
+          <SheetTitle>Insr</SheetTitle>
           <SheetDescription>
-            Zarządzanie polisami
+            Automatyzacja dla agentów ubezpieczeniowych
           </SheetDescription>
         </SheetHeader>
         <LinksList />

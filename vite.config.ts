@@ -21,10 +21,19 @@ export default defineConfig({
       },
 
       manifest: {
-        name: 'vite-pwa-test',
-        short_name: 'vite-pwa-test',
-        description: 'test',
-        theme_color: '#ffffff',
+        name: 'Insr',
+        short_name: 'Insr',
+        description: 'Insr - Automatyzacja dla agentów ubezpieczeniowych',
+        theme_color: '#03163D',
+        lang: 'pl',
+        icons: [
+          {
+            src: '/logo-insr.png',
+            sizes: '500x500',
+            type: 'image/png',
+            purpose: 'any',
+          },
+        ],
       },
 
       workbox: {
