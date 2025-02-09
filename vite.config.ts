@@ -23,7 +23,7 @@ export default defineConfig({
       manifest: {
         name: 'Insr',
         short_name: 'Insr',
-        description: 'Insr - Zarządzaj swoimi polisami',
+        description: 'Insr - Automatyzacja dla agentów ubezpieczeniowych',
         theme_color: '#03163D',
         lang: 'pl',
         icons: [

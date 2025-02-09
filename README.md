@@ -8,6 +8,15 @@ Insr to innowacyjna aplikacja zaprojektowana z myślą o agentach ubezpieczeniow
 
 Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie tylko usprawni ich pracę, ale także zwiększy efektywność i zadowolenie klientów. Insr łączy w sobie nowoczesne technologie z intuicyjnym interfejsem, oferując kompleksowe rozwiązania dla branży ubezpieczeniowej.
 
+## Korzyści
+
+- **Zwiększona Efektywność**: Automatyzacja procesów pozwala agentom skupić się na kluczowych zadaniach.
+- **Bezpieczeństwo Danych**: Lokalna kontrola nad danymi oraz szyfrowane kopie zapasowe zapewniają najwyższy poziom bezpieczeństwa.
+- **Elastyczność**: Możliwość dostosowania aplikacji do indywidualnych potrzeb użytkownika.
+
+![Logo Insr]("/public/app-screenshot-1.png.png")
+
+
 ## Kluczowe Funkcje
 
 1. **Integracja z iAPI.pl**: Bezpośredni dostęp do 24 towarzystw ubezpieczeniowych, co umożliwia szybkie porównanie ofert i wybór najlepszej opcji dla klienta.
@@ -35,12 +44,6 @@ Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie 
 12. **Integracja z Kalendarzem Google**: Synchronizacja bazy klientów z popularnymi serwisami do zarządzania spotkaniami.
 
 13. **Analiza Finansowa**: Wgląd w prowizje i finanse zespołu dzięki zaawansowanym wykresom i raportom.
-
-## Korzyści
-
-- **Zwiększona Efektywność**: Automatyzacja procesów pozwala agentom skupić się na kluczowych zadaniach.
-- **Bezpieczeństwo Danych**: Lokalna kontrola nad danymi oraz szyfrowane kopie zapasowe zapewniają najwyższy poziom bezpieczeństwa.
-- **Elastyczność**: Możliwość dostosowania aplikacji do indywidualnych potrzeb użytkownika.
 
 ## Podsumowanie
 

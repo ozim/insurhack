@@ -30,7 +30,7 @@ export const MainMenu = () => {
         <SheetHeader>
           <SheetTitle>Insr</SheetTitle>
           <SheetDescription>
-            Zarządzanie polisami
+            Automatyzacja dla agentów ubezpieczeniowych
           </SheetDescription>
         </SheetHeader>
         <LinksList />
