@@ -14,7 +14,7 @@ Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie 
 - **Bezpieczeństwo Danych**: Lokalna kontrola nad danymi oraz szyfrowane kopie zapasowe zapewniają najwyższy poziom bezpieczeństwa.
 - **Elastyczność**: Możliwość dostosowania aplikacji do indywidualnych potrzeb użytkownika.
 
-![Logo Insr]("/public/app-screenshot-1.png.png")
+![Screenshot aplikacji]("https://github.com/lebrande/insurhack/blob/main/public/app-screenshot-1.png?raw=true")
 
 
 ## Kluczowe Funkcje
