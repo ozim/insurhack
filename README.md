@@ -1,6 +1,6 @@
-# Whitepaper: Insr
+![Logo aplikacji Insr](./public/logo-insr-80.png)
 
-<img src="./images/logo-insr.png" alt="Logo aplikacji Insr" height="100" />
+# Whitepaper: Insr
 
 ## Wprowadzenie
 
@@ -50,3 +50,5 @@ Naszą misją jest dostarczenie agentom ubezpieczeniowym narzędzia, które nie 
 ## Podsumowanie
 
 Insr to kompleksowe rozwiązanie dla agentów ubezpieczeniowych, które łączy w sobie nowoczesne technologie z intuicyjnym interfejsem. Dzięki szerokiej gamie funkcji i korzyści, Insr jest idealnym narzędziem do zarządzania polisami i automatyzacji pracy w branży ubezpieczeniowej.
+
+![Zespół agentów](./public/team-agents.jpg)
