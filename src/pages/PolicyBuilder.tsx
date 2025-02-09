@@ -9,6 +9,9 @@ import { BriefcaseBusinessIcon, CarIcon, HeartIcon, HomeIcon, LeafIcon, LoaderCi
 import { cn, sleep } from '@/lib/utils';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
+import {Policy} from "@/types";
+import axios from "axios";
+import {addPolicy} from "@/localStorageService";
 
 export const formSchema = z.object({
     startDate: z.date(),
@@ -18,6 +21,8 @@ export const formSchema = z.object({
     postCode: z.string().regex(/^[0-9]{2}-[0-9]{3}$/),
     insuranceOptions: z.array(z.number()),
 })
+
+
 
 const insuranceOptions = [
     { id: 1, label: 'Pojazd', icon: <CarIcon size={50} /> },
@@ -30,7 +35,8 @@ const insuranceOptions = [
 
 export const PolicyBuilder = () => {
     const navigate = useNavigate();
-
+    const [data, setData] = useState<Policy>();
+    let policy:Policy;
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
