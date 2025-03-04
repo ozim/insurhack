@@ -93,7 +93,10 @@ export const PolicyBuilder = () => {
             .then(response => {
                 const policy = randomizeData(mapData(response.data));
                 // @ts-expect-error
-                addPolicy(policy)
+                addPolicy(policy);
+                setIsSending(true);
+                sleep(1000);
+                navigate('/');
             });
     }
     const randomizeData = (apiData: any) => {
