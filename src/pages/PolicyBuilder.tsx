@@ -247,7 +247,7 @@ export const PolicyBuilder = () => {
                 </form>
             </Form>
             <div>
-         <Button onClick={handleClickNewPolicy}>Ściągnij najlepszą ofertę nowej polisy prosto z iAPI</Button>
+         <Button onClick={handleClickNewPolicy}>Ściągnij z iAPI</Button>
          
         </div>
         </div >
