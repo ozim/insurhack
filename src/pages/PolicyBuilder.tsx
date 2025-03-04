@@ -205,7 +205,7 @@ export const PolicyBuilder = () => {
                                     <FormItem>
                                         <FormLabel>Imię i nazwisko</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="12-345" {...field} />
+                                            <Input placeholder="Jan Nowak" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -245,12 +245,13 @@ export const PolicyBuilder = () => {
                                 {isSending && <LoaderCircleIcon className="w-4 h-4 animate-spin" />}
                                 Wyślij do agenta
                             </Button>
+                            <Button className="flex items-center gap-2" onClick={handleClickNewPolicy} disabled={isSending}> {isSending && <LoaderCircleIcon className="w-4 h-4 animate-spin" />} Ściągnij z iAPI</Button>
                         </>
                     )}
                 </form>
             </Form>
             <div>
-         <Button onClick={handleClickNewPolicy}>Ściągnij z iAPI</Button>
+         
          
         </div>
         </div >
